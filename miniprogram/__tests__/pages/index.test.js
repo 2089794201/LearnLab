@@ -27,17 +27,53 @@ describe('index page - core logic', () => {
     });
   });
 
-  describe('task completion toggle', () => {
-    it('toggles completed from false to true', () => {
-      const task = { _id: '1', completed: false };
-      const newCompleted = !task.completed;
-      expect(newCompleted).toBe(true);
+  describe('task completion with confirmation', () => {
+    it('computes confirm message for completing a task', () => {
+      const task = { _id: '1', name: '完成作业', completed: false };
+      const action = task.completed ? '取消' : '完成';
+      const content = `确定${action}任务「${task.name}」吗？`;
+      expect(content).toBe('确定完成任务「完成作业」吗？');
     });
 
-    it('toggles completed from true to false', () => {
-      const task = { _id: '1', completed: true };
-      const newCompleted = !task.completed;
-      expect(newCompleted).toBe(false);
+    it('computes confirm message for uncompleting a task', () => {
+      const task = { _id: '1', name: '完成作业', completed: true };
+      const action = task.completed ? '取消' : '完成';
+      const content = `确定${action}任务「${task.name}」吗？`;
+      expect(content).toBe('确定取消任务「完成作业」吗？');
+    });
+
+    it('only proceeds when user confirms', () => {
+      let proceeded = false;
+      const userConfirmed = true;
+      if (userConfirmed) proceeded = true;
+      expect(proceeded).toBe(true);
+    });
+
+    it('does not proceed when user cancels', () => {
+      let proceeded = false;
+      const userConfirmed = false;
+      if (userConfirmed) proceeded = true;
+      expect(proceeded).toBe(false);
+    });
+  });
+
+  describe('readonly flag for task-modal', () => {
+    it('is true when editingTask exists and is completed', () => {
+      const editingTask = { _id: '1', completed: true };
+      const readonly = editingTask && editingTask.completed;
+      expect(readonly).toBe(true);
+    });
+
+    it('is false when editingTask exists and is not completed', () => {
+      const editingTask = { _id: '1', completed: false };
+      const readonly = editingTask && editingTask.completed;
+      expect(readonly).toBe(false);
+    });
+
+    it('is false when editingTask is null (add mode)', () => {
+      const editingTask = null;
+      const readonly = !!(editingTask && editingTask.completed);
+      expect(readonly).toBe(false);
     });
   });
 

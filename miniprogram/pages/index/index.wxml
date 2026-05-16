@@ -44,6 +44,7 @@
   <task-modal
     visible="{{showModal}}"
     task="{{editingTask}}"
+    readonly="{{editingTask && editingTask.completed}}"
     bind:confirm="onModalConfirm"
     bind:cancel="onModalCancel"
   />

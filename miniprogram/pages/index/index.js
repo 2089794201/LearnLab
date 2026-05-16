@@ -97,11 +97,20 @@ Page({
   onTaskCircleTap(e) {
     const task = e.detail.task;
     const newCompleted = !task.completed;
-    update('tasks', task._id, { completed: newCompleted })
-      .then(() => this.loadTasks())
-      .catch(() => {
-        wx.showToast({ title: '保存失败', icon: 'error' });
-      });
+    const action = task.completed ? '取消' : '完成';
+    wx.showModal({
+      title: '确认操作',
+      content: `确定${action}任务「${task.name}」吗？`,
+      success: (res) => {
+        if (res.confirm) {
+          update('tasks', task._id, { completed: newCompleted })
+            .then(() => this.loadTasks())
+            .catch(() => {
+              wx.showToast({ title: '保存失败', icon: 'error' });
+            });
+        }
+      }
+    });
   },
 
   onTaskTap(e) {
