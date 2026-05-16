@@ -60,12 +60,14 @@ Component({
     },
 
     onStartTimeChange(e) {
+      if (this.data.readonly) return;
       const startTime = e.detail.value;
       this.setData({ startTime });
       this.calcDuration(startTime, this.data.endTime);
     },
 
     onEndTimeChange(e) {
+      if (this.data.readonly) return;
       const endTime = e.detail.value;
       this.setData({ endTime });
       this.calcDuration(this.data.startTime, endTime);
