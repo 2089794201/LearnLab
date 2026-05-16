@@ -9,6 +9,10 @@ Component({
     task: {
       type: Object,
       value: null
+    },
+    readonly: {
+      type: Boolean,
+      value: false
     }
   },
 
@@ -78,6 +82,7 @@ Component({
     },
 
     onPriorityTap(e) {
+      if (this.data.readonly) return;
       this.setData({ priority: e.currentTarget.dataset.value });
     },
 
@@ -86,6 +91,10 @@ Component({
     },
 
     onConfirm() {
+      if (this.data.readonly) {
+        this.triggerEvent('cancel');
+        return;
+      }
       const errors = {};
       const nameResult = validateTaskName(this.data.name);
       if (!nameResult.valid) {

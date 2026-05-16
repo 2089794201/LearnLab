@@ -1,13 +1,13 @@
 <view wx:if="{{visible}}" class="modal-overlay" bindtap="onOverlayTap">
   <view class="modal-content" catchtap="onContentTap">
     <view class="modal-header">
-      <text class="modal-title">{{task ? '编辑任务' : '添加任务'}}</text>
+      <text class="modal-title">{{readonly ? '查看任务' : (task ? '编辑任务' : '添加任务')}}</text>
       <text class="modal-close" bindtap="onCancel">✕</text>
     </view>
 
     <view class="form-group">
       <text class="form-label">任务名称</text>
-      <input class="form-input" value="{{name}}" bindinput="onNameInput" placeholder="任务名称" placeholder-class="placeholder" />
+      <input class="form-input" value="{{name}}" bindinput="onNameInput" placeholder="任务名称" placeholder-class="placeholder" disabled="{{readonly}}" />
       <text wx:if="{{errors.name}}" class="form-error">{{errors.name}}</text>
     </view>
 
@@ -51,11 +51,11 @@
 
     <view class="form-group">
       <text class="form-label">备注（可选）</text>
-      <textarea class="form-input form-textarea" value="{{notes}}" bindinput="onNotesInput" placeholder="备注" placeholder-class="placeholder" />
+      <textarea class="form-input form-textarea" value="{{notes}}" bindinput="onNotesInput" placeholder="备注" placeholder-class="placeholder" disabled="{{readonly}}" />
     </view>
 
     <view class="modal-actions">
-      <view class="btn-primary" bindtap="onConfirm">确认</view>
+      <view class="btn-primary" bindtap="onConfirm">{{readonly ? '关闭' : '确认'}}</view>
     </view>
   </view>
 </view>

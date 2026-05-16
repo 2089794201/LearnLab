@@ -47,4 +47,38 @@ describe('task-modal', () => {
     const options = comp.querySelectorAll('.priority-option');
     expect(options.length).toBe(3);
   });
+
+  it('renders readonly mode - all inputs disabled', () => {
+    const comp = simulate.render(id, {
+      visible: true,
+      readonly: true,
+      task: { _id: '1', name: '已完成任务', start_time: '09:00', end_time: '10:30', duration: 90, priority: 'high', notes: '', completed: true }
+    });
+    const inputs = comp.querySelectorAll('.form-input');
+    const inputWithDisabled = inputs.filter(el => {
+      const attrs = el._exparserNode._vt ? el._exparserNode._vt.attrs : [];
+      return attrs.some(a => a.name === 'disabled');
+    });
+    expect(inputWithDisabled.length).toBe(2);
+    inputWithDisabled.forEach(el => {
+      const disabledAttr = el._exparserNode._vt.attrs.find(a => a.name === 'disabled');
+      expect(disabledAttr.value).toBe(true);
+    });
+  });
+
+  it('renders confirm button text as 关闭 in readonly mode', () => {
+    const comp = simulate.render(id, {
+      visible: true,
+      readonly: true,
+      task: { _id: '1', name: '已完成任务', start_time: '09:00', end_time: '10:30', duration: 90, priority: 'high', notes: '', completed: true }
+    });
+    const title = comp.querySelector('.modal-title');
+    expect(title.dom.textContent).toContain('查看');
+  });
+
+  it('renders confirm button text as 确认 in normal mode', () => {
+    const comp = simulate.render(id, { visible: true, task: null });
+    const btn = comp.querySelector('.btn-primary');
+    expect(btn.dom.textContent).toContain('确认');
+  });
 });
