@@ -9,6 +9,7 @@ Page({
     tasks: [],
     markedDates: [],
     editingTask: null,
+    editingTaskId: null,
     showModal: false,
     calendarYear: new Date().getFullYear(),
     calendarMonth: new Date().getMonth() + 1
@@ -115,7 +116,7 @@ Page({
 
   onTaskTap(e) {
     const task = e.detail.task;
-    this.setData({ editingTask: task, showModal: true });
+    this.setData({ editingTask: task, editingTaskId: task._id, showModal: true });
   },
 
   onTaskSwipeLeft(e) {
@@ -139,16 +140,16 @@ Page({
   },
 
   onAddTap() {
-    this.setData({ editingTask: null, showModal: true });
+    this.setData({ editingTask: null, editingTaskId: null, showModal: true });
   },
 
   onModalConfirm(e) {
     const taskData = e.detail.taskData;
-    if (this.data.editingTask) {
-      update('tasks', this.data.editingTask._id, taskData)
+    if (this.data.editingTaskId) {
+      update('tasks', this.data.editingTaskId, taskData)
         .then(() => {
           wx.showToast({ title: '已保存' });
-          this.setData({ showModal: false, editingTask: null });
+          this.setData({ showModal: false, editingTask: null, editingTaskId: null });
           this.loadTasks();
           this.loadMarkedDates();
         })
@@ -159,7 +160,7 @@ Page({
       add('tasks', { ...taskData, date: this.data.selectedDate, completed: false })
         .then(() => {
           wx.showToast({ title: '已添加' });
-          this.setData({ showModal: false });
+          this.setData({ showModal: false, editingTaskId: null });
           this.loadTasks();
           this.loadMarkedDates();
         })
@@ -170,6 +171,6 @@ Page({
   },
 
   onModalCancel() {
-    this.setData({ showModal: false, editingTask: null });
+    this.setData({ showModal: false, editingTask: null, editingTaskId: null });
   }
 });

@@ -77,6 +77,26 @@ describe('index page - core logic', () => {
     });
   });
 
+  describe('editingTaskId for update vs add decision', () => {
+    it('uses update path when editingTaskId is set', () => {
+      const editingTaskId = 'abc123';
+      const useUpdate = !!editingTaskId;
+      expect(useUpdate).toBe(true);
+    });
+
+    it('uses add path when editingTaskId is null', () => {
+      const editingTaskId = null;
+      const useUpdate = !!editingTaskId;
+      expect(useUpdate).toBe(false);
+    });
+
+    it('uses add path when editingTaskId is undefined', () => {
+      const editingTaskId = undefined;
+      const useUpdate = !!editingTaskId;
+      expect(useUpdate).toBe(false);
+    });
+  });
+
   describe('marked dates aggregation', () => {
     it('deduplicates dates', () => {
       const data = [

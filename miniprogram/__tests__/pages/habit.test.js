@@ -19,6 +19,30 @@ describe('habit page - core logic', () => {
     });
   });
 
+  describe('checkin toggle logic', () => {
+    it('adds checkin when not already checked', () => {
+      const todayCheckins = {};
+      const habitId = 'h1';
+      const alreadyChecked = !!todayCheckins[habitId];
+      expect(alreadyChecked).toBe(false);
+    });
+
+    it('removes checkin when already checked', () => {
+      const todayCheckins = { h1: true };
+      const habitId = 'h1';
+      const alreadyChecked = !!todayCheckins[habitId];
+      expect(alreadyChecked).toBe(true);
+    });
+
+    it('deletes habit from map on uncheck', () => {
+      const todayCheckins = { h1: true, h2: true };
+      const habitId = 'h1';
+      delete todayCheckins[habitId];
+      expect(todayCheckins).toEqual({ h2: true });
+      expect(Object.keys(todayCheckins).length).toBe(1);
+    });
+  });
+
   describe('done count calculation', () => {
     it('counts checked habits', () => {
       const todayCheckins = { h1: true, h2: true, h3: false };

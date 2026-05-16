@@ -74,7 +74,17 @@ Page({
   onHabitCheck(e) {
     const { habitId } = e.detail;
     if (this.data.todayCheckins[habitId]) {
-      wx.showToast({ title: '今日已打卡', icon: 'none' });
+      removeWhere('checkins', { habit_id: habitId, date: this.data.today })
+        .then(() => {
+          const todayCheckins = { ...this.data.todayCheckins };
+          delete todayCheckins[habitId];
+          const doneCount = Object.keys(todayCheckins).length;
+          this.setData({ todayCheckins, doneCount });
+          this.callUpdateStreak(habitId, this.data.today);
+        })
+        .catch(() => {
+          wx.showToast({ title: '取消打卡失败', icon: 'error' });
+        });
       return;
     }
     add('checkins', {
