@@ -1,0 +1,72 @@
+.habit-card {
+  display: flex;
+  align-items: center;
+  padding: var(--spacing-md) var(--spacing-lg);
+  border-radius: var(--radius-md);
+  background: var(--color-white);
+  box-shadow: var(--color-card-shadow);
+}
+
+.habit-body {
+  flex: 1;
+}
+
+.habit-name {
+  font-size: var(--font-md);
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 4rpx;
+}
+
+.habit-streak {
+  display: flex;
+  align-items: center;
+  gap: 4rpx;
+}
+
+.streak-icon {
+  font-size: var(--font-sm);
+}
+
+.streak-num {
+  font-size: var(--font-sm);
+  color: var(--color-priority-medium);
+  font-weight: 600;
+}
+
+.streak-record {
+  font-size: 20rpx;
+  color: var(--color-priority-high);
+  background: rgba(239, 68, 68, 0.1);
+  padding: 2rpx 8rpx;
+  border-radius: var(--radius-sm);
+}
+
+.habit-check {
+  margin-left: var(--spacing-md);
+}
+
+.check-box {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.check-box.unchecked {
+  border: 3rpx solid var(--color-border);
+  background: transparent;
+}
+
+.check-box.checked {
+  background: var(--color-success);
+  border: 3rpx solid var(--color-success);
+}
+
+.check-icon {
+  color: var(--color-white);
+  font-size: 28rpx;
+  font-weight: 700;
+}

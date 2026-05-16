@@ -1,0 +1,54 @@
+<view class="page-container">
+  <view class="progress-section">
+    <progress-bar done="{{doneCount}}" total="{{habits.length}}" />
+  </view>
+
+  <view wx:if="{{habits.length === 0}}" class="empty-state">
+    <text class="empty-state-icon">✅</text>
+    <text class="empty-state-text">还没有习惯，点击 + 添加第一个吧</text>
+  </view>
+
+  <view wx:else class="habit-list">
+    <habit-card
+      wx:for="{{habits}}"
+      wx:key="_id"
+      habit="{{item}}"
+      checked="{{todayCheckins[item._id] || false}}"
+      bind:check="onHabitCheck"
+      bind:longpress="onHabitLongPress"
+      bind:swipeleft="onHabitSwipeLeft"
+    />
+  </view>
+
+  <view class="fab" bindtap="onAddTap">+</view>
+
+  <view wx:if="{{showNewModal}}" class="modal-overlay" bindtap="onNewCancel">
+    <view class="modal-content" catchtap="onModalStop">
+      <view class="modal-header">
+        <text class="modal-title">新建习惯</text>
+        <text class="modal-close" bindtap="onNewCancel">✕</text>
+      </view>
+      <view class="form-group">
+        <text class="form-label">习惯名称</text>
+        <input class="form-input" value="{{newHabitName}}" bindinput="onNewInput" placeholder="例如：每天阅读30分钟" placeholder-class="placeholder" />
+        <text wx:if="{{newNameError}}" class="form-error">{{newNameError}}</text>
+      </view>
+      <view class="btn-primary" bindtap="onNewConfirm">确认</view>
+    </view>
+  </view>
+
+  <view wx:if="{{showEditModal}}" class="modal-overlay" bindtap="onEditCancel">
+    <view class="modal-content" catchtap="onModalStop">
+      <view class="modal-header">
+        <text class="modal-title">编辑习惯</text>
+        <text class="modal-close" bindtap="onEditCancel">✕</text>
+      </view>
+      <view class="form-group">
+        <text class="form-label">习惯名称</text>
+        <input class="form-input" value="{{editHabitName}}" bindinput="onEditInput" placeholder="习惯名称" placeholder-class="placeholder" />
+        <text wx:if="{{editNameError}}" class="form-error">{{editNameError}}</text>
+      </view>
+      <view class="btn-primary" bindtap="onEditConfirm">确认</view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,50 @@
+<view class="page-container">
+  <view class="view-switch">
+    <view class="switch-btn {{currentView === 'today' ? 'active' : ''}}" data-view="today" bindtap="switchView">今日视图</view>
+    <view class="switch-btn {{currentView === 'calendar' ? 'active' : ''}}" data-view="calendar" bindtap="switchView">日历视图</view>
+  </view>
+
+  <view wx:if="{{currentView === 'today'}}" class="date-bar flex-between">
+    <view class="date-arrow" bindtap="goPrevDay">‹</view>
+    <view class="date-display" bindtap="switchToCalendar">
+      <text>{{displayDate}}</text>
+      <text class="calendar-icon">📅</text>
+    </view>
+    <view class="date-arrow" bindtap="goNextDay">›</view>
+  </view>
+
+  <view wx:if="{{currentView === 'today'}}">
+    <view wx:if="{{tasks.length === 0}}" class="empty-state">
+      <text class="empty-state-icon">📋</text>
+      <text class="empty-state-text">今天还没有任务，点击 + 添加吧</text>
+    </view>
+    <view wx:else class="task-list">
+      <task-card
+        wx:for="{{tasks}}"
+        wx:key="_id"
+        task="{{item}}"
+        bind:circletap="onTaskCircleTap"
+        bind:tap="onTaskTap"
+        bind:swipeleft="onTaskSwipeLeft"
+      />
+    </view>
+    <view class="fab" bindtap="onAddTap">+</view>
+  </view>
+
+  <view wx:if="{{currentView === 'calendar'}}" class="calendar-view">
+    <calendar
+      year="{{calendarYear}}"
+      month="{{calendarMonth}}"
+      markedDates="{{markedDates}}"
+      bind:datetap="onCalendarDateTap"
+      bind:monthchange="onMonthChange"
+    />
+  </view>
+
+  <task-modal
+    visible="{{showModal}}"
+    task="{{editingTask}}"
+    bind:confirm="onModalConfirm"
+    bind:cancel="onModalCancel"
+  />
+</view>

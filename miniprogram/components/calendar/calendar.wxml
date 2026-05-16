@@ -1,0 +1,30 @@
+<view class="calendar">
+  <view class="calendar-header">
+    <view class="month-arrow" bindtap="onPrevMonth">‹</view>
+    <text class="month-label">{{monthLabel}}</text>
+    <view class="month-arrow" bindtap="onNextMonth">›</view>
+  </view>
+
+  <view class="weekday-row">
+    <text class="weekday-item">日</text>
+    <text class="weekday-item">一</text>
+    <text class="weekday-item">二</text>
+    <text class="weekday-item">三</text>
+    <text class="weekday-item">四</text>
+    <text class="weekday-item">五</text>
+    <text class="weekday-item">六</text>
+  </view>
+
+  <view class="calendar-grid">
+    <view
+      wx:for="{{days}}"
+      wx:key="date"
+      class="day-cell {{item.isCurrentMonth ? '' : 'other-month'}} {{item.isToday ? 'today' : ''}}"
+      data-date="{{item.date}}"
+      bindtap="onDateTap"
+    >
+      <text class="day-num">{{item.day}}</text>
+      <view wx:if="{{item.hasTask}}" class="task-dot"></view>
+    </view>
+  </view>
+</view>

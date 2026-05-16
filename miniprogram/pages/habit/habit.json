@@ -1,0 +1,7 @@
+{
+  "usingComponents": {
+    "habit-card": "../../components/habit-card/habit-card",
+    "progress-bar": "../../components/progress-bar/progress-bar"
+  },
+  "navigationBarTitleText": "习惯打卡"
+}

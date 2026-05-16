@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "task-card": "../../components/task-card/task-card",
+    "task-modal": "../../components/task-modal/task-modal",
+    "calendar": "../../components/calendar/calendar"
+  },
+  "navigationBarTitleText": "LearnLab"
+}

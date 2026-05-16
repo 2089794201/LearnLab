@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "stats-cards": "../../components/stats-cards/stats-cards"
+  },
+  "navigationBarTitleText": "我的"
+}

@@ -1,0 +1,15 @@
+<view class="habit-card card" bindlongpress="onLongPress" bindtap="onSwipeLeft">
+  <view class="habit-body">
+    <view class="habit-name">{{habit.name}}</view>
+    <view wx:if="{{habit.streak > 0}}" class="habit-streak">
+      <text class="streak-icon">🔥</text>
+      <text class="streak-num">{{habit.streak}}</text>
+      <text wx:if="{{habit.streak >= habit.best_streak && habit.streak > 0}}" class="streak-record">新纪录！</text>
+    </view>
+  </view>
+  <view class="habit-check" catchtap="onCheck">
+    <view class="check-box {{checked ? 'checked' : 'unchecked'}}">
+      <text wx:if="{{checked}}" class="check-icon">✓</text>
+    </view>
+  </view>
+</view>

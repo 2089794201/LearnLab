@@ -1,0 +1,13 @@
+.progress-section {
+  margin-bottom: var(--spacing-lg);
+}
+
+.habit-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.placeholder {
+  color: #666;
+}

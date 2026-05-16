@@ -1,0 +1,61 @@
+<view wx:if="{{visible}}" class="modal-overlay" bindtap="onOverlayTap">
+  <view class="modal-content" catchtap="onContentTap">
+    <view class="modal-header">
+      <text class="modal-title">{{task ? '编辑任务' : '添加任务'}}</text>
+      <text class="modal-close" bindtap="onCancel">✕</text>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">任务名称</text>
+      <input class="form-input" value="{{name}}" bindinput="onNameInput" placeholder="任务名称" placeholder-class="placeholder" />
+      <text wx:if="{{errors.name}}" class="form-error">{{errors.name}}</text>
+    </view>
+
+    <view class="form-row">
+      <view class="form-group form-half">
+        <text class="form-label">开始时间</text>
+        <picker mode="time" value="{{startTime}}" bindchange="onStartTimeChange">
+          <view class="form-input picker-input">{{startTime || '选择时间'}}</view>
+        </picker>
+      </view>
+      <view class="form-group form-half">
+        <text class="form-label">结束时间</text>
+        <picker mode="time" value="{{endTime}}" bindchange="onEndTimeChange">
+          <view class="form-input picker-input">{{endTime || '选择时间'}}</view>
+        </picker>
+      </view>
+    </view>
+    <text wx:if="{{errors.time}}" class="form-error">{{errors.time}}</text>
+
+    <view wx:if="{{duration > 0}}" class="duration-display">
+      <text>预计时长：{{duration}} 分钟</text>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">优先级</text>
+      <view class="priority-options">
+        <view class="priority-option {{priority === 'high' ? 'selected' : ''}}" data-value="high" bindtap="onPriorityTap">
+          <view class="priority-dot-sm priority-high"></view>
+          <text>高</text>
+        </view>
+        <view class="priority-option {{priority === 'medium' ? 'selected' : ''}}" data-value="medium" bindtap="onPriorityTap">
+          <view class="priority-dot-sm priority-medium"></view>
+          <text>中</text>
+        </view>
+        <view class="priority-option {{priority === 'low' ? 'selected' : ''}}" data-value="low" bindtap="onPriorityTap">
+          <view class="priority-dot-sm priority-low"></view>
+          <text>低</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="form-group">
+      <text class="form-label">备注（可选）</text>
+      <textarea class="form-input form-textarea" value="{{notes}}" bindinput="onNotesInput" placeholder="备注" placeholder-class="placeholder" />
+    </view>
+
+    <view class="modal-actions">
+      <view class="btn-primary" bindtap="onConfirm">确认</view>
+    </view>
+  </view>
+</view>

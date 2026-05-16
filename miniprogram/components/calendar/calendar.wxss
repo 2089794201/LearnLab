@@ -1,0 +1,82 @@
+.calendar {
+  background: var(--color-white);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-md);
+  box-shadow: var(--color-card-shadow);
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--spacing-md);
+}
+
+.month-arrow {
+  font-size: 40rpx;
+  color: var(--color-primary);
+  padding: 0 var(--spacing-md);
+  font-weight: 300;
+}
+
+.month-label {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.weekday-row {
+  display: flex;
+  margin-bottom: var(--spacing-sm);
+}
+
+.weekday-item {
+  flex: 1;
+  text-align: center;
+  font-size: var(--font-sm);
+  color: var(--color-text-secondary);
+  padding: var(--spacing-xs) 0;
+}
+
+.calendar-grid {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.day-cell {
+  width: calc(100% / 7);
+  aspect-ratio: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  border-radius: var(--radius-sm);
+}
+
+.day-num {
+  font-size: var(--font-md);
+  color: var(--color-text);
+}
+
+.other-month .day-num {
+  color: var(--color-text-light);
+}
+
+.today {
+  background: rgba(99, 102, 241, 0.1);
+}
+
+.today .day-num {
+  color: var(--color-primary);
+  font-weight: 700;
+}
+
+.task-dot {
+  width: 8rpx;
+  height: 8rpx;
+  border-radius: 50%;
+  background: var(--color-primary);
+  position: absolute;
+  bottom: 8rpx;
+}
