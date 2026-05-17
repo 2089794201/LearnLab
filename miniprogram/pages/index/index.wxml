@@ -1,4 +1,4 @@
-<view class="page-container">
+<view class="page-container {{themeClass}}">
   <view class="view-switch">
     <view class="switch-btn {{currentView === 'today' ? 'active' : ''}}" data-view="today" bindtap="switchView">今日视图</view>
     <view class="switch-btn {{currentView === 'calendar' ? 'active' : ''}}" data-view="calendar" bindtap="switchView">日历视图</view>

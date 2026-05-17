@@ -14,10 +14,16 @@ Page({
     newHabitName: '',
     editHabitName: '',
     newNameError: '',
-    editNameError: ''
+    editNameError: '',
+    themeClass: ''
   },
 
   onShow() {
+    const theme = wx.getStorageSync('learnlab_theme') || 'dark';
+    this.setData({ themeClass: theme === 'light' ? 'theme-light' : '' });
+    wx.setPageStyle({
+      style: { '--color-bg': theme === 'light' ? '#f0f4f4' : '#080c0c' }
+    });
     this.loadData();
   },
 

@@ -1,9 +1,10 @@
 .view-switch {
   display: flex;
-  background: var(--color-white);
+  background: var(--color-surface);
   border-radius: var(--radius-full);
   padding: 4rpx;
   margin-bottom: var(--spacing-md);
+  border: 1px solid var(--color-border);
 }
 
 .switch-btn {
@@ -13,7 +14,11 @@
   border-radius: var(--radius-full);
   font-size: var(--font-md);
   color: var(--color-text-secondary);
-  transition: all 0.2s;
+  transition: all 0.2s ease;
+}
+
+.switch-btn:active {
+  opacity: 0.85;
 }
 
 .switch-btn.active {
@@ -36,7 +41,7 @@
 .date-display {
   font-size: var(--font-lg);
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-text-primary);
   display: flex;
   align-items: center;
   gap: var(--spacing-xs);
@@ -49,7 +54,7 @@
 .task-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: 14rpx;
 }
 
 .calendar-view {

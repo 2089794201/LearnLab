@@ -1,4 +1,4 @@
-<view class="page-container">
+<view class="page-container {{themeClass}}">
   <view class="progress-section">
     <progress-bar done="{{doneCount}}" total="{{habits.length}}" />
   </view>

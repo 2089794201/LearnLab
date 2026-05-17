@@ -1,4 +1,4 @@
-<view class="page-container">
+<view class="page-container {{themeClass}}">
   <view class="user-section card">
     <open-data type="userAvatarUrl" class="user-avatar" />
     <open-data type="userNickName" class="user-name" />
@@ -6,6 +6,13 @@
 
   <view class="section-title">本周统计</view>
   <stats-cards stats="{{stats}}" loading="{{loading}}" />
+
+  <view class="menu-section card">
+    <view class="menu-item">
+      <text>深色模式</text>
+      <switch checked="{{isDarkMode}}" bindchange="onThemeToggle" />
+    </view>
+  </view>
 
   <view class="menu-section card">
     <view class="menu-item" bindtap="onExport">

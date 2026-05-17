@@ -12,7 +12,8 @@ Page({
     editingTaskId: null,
     showModal: false,
     calendarYear: new Date().getFullYear(),
-    calendarMonth: new Date().getMonth() + 1
+    calendarMonth: new Date().getMonth() + 1,
+    themeClass: ''
   },
 
   onLoad() {
@@ -20,6 +21,11 @@ Page({
   },
 
   onShow() {
+    const theme = wx.getStorageSync('learnlab_theme') || 'dark';
+    this.setData({ themeClass: theme === 'light' ? 'theme-light' : '' });
+    wx.setPageStyle({
+      style: { '--color-bg': theme === 'light' ? '#f0f4f4' : '#080c0c' }
+    });
     this.loadTasks();
     this.loadMarkedDates();
   },

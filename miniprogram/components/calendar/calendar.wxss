@@ -1,8 +1,9 @@
 .calendar {
-  background: var(--color-white);
+  background: var(--color-surface);
   border-radius: var(--radius-md);
   padding: var(--spacing-md);
-  box-shadow: var(--color-card-shadow);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
 }
 
 .calendar-header {
@@ -22,7 +23,7 @@
 .month-label {
   font-size: var(--font-lg);
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-text-primary);
 }
 
 .weekday-row {
@@ -56,15 +57,19 @@
 
 .day-num {
   font-size: var(--font-md);
-  color: var(--color-text);
+  color: var(--color-text-primary);
 }
 
 .other-month .day-num {
-  color: var(--color-text-light);
+  color: var(--color-text-tertiary);
 }
 
 .today {
-  background: rgba(99, 102, 241, 0.1);
+  background: var(--color-primary-bg);
+}
+
+.day-cell.selected {
+  border: 2rpx solid var(--color-primary);
 }
 
 .today .day-num {

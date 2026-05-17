@@ -5,9 +5,9 @@
 .habit-list {
   display: flex;
   flex-direction: column;
-  gap: var(--spacing-sm);
+  gap: 14rpx;
 }
 
 .placeholder {
-  color: #666;
+  color: var(--color-text-tertiary);
 }

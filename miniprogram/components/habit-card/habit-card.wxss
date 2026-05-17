@@ -3,8 +3,14 @@
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
   border-radius: var(--radius-md);
-  background: var(--color-white);
-  box-shadow: var(--color-card-shadow);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-card);
+  transition: opacity 0.1s ease;
+}
+
+.habit-card:active {
+  opacity: 0.85;
 }
 
 .habit-body {
@@ -14,7 +20,7 @@
 .habit-name {
   font-size: var(--font-md);
   font-weight: 500;
-  color: var(--color-text);
+  color: var(--color-text-primary);
   margin-bottom: 4rpx;
 }
 
@@ -30,14 +36,14 @@
 
 .streak-num {
   font-size: var(--font-sm);
-  color: var(--color-priority-medium);
+  color: var(--color-primary);
   font-weight: 600;
 }
 
 .streak-record {
   font-size: 20rpx;
-  color: var(--color-priority-high);
-  background: rgba(239, 68, 68, 0.1);
+  color: var(--color-primary);
+  background: var(--color-primary-bg);
   padding: 2rpx 8rpx;
   border-radius: var(--radius-sm);
 }
@@ -56,13 +62,13 @@
 }
 
 .check-box.unchecked {
-  border: 3rpx solid var(--color-border);
+  border: 3rpx solid var(--color-primary);
   background: transparent;
 }
 
 .check-box.checked {
-  background: var(--color-success);
-  border: 3rpx solid var(--color-success);
+  background: var(--color-primary);
+  border: 3rpx solid var(--color-primary);
 }
 
 .check-icon {

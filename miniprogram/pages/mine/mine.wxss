@@ -16,7 +16,7 @@
 .user-name {
   font-size: var(--font-lg);
   font-weight: 600;
-  color: var(--color-text);
+  color: var(--color-text-primary);
 }
 
 .section-title {
@@ -37,6 +37,7 @@
   align-items: center;
   padding: var(--spacing-md) var(--spacing-lg);
   border-bottom: 1rpx solid var(--color-border);
+  color: var(--color-text-primary);
 }
 
 .menu-item:last-child {
@@ -44,11 +45,11 @@
 }
 
 .menu-item:active {
-  background: #f5f5f5;
+  background: var(--color-surface-hover);
 }
 
 .menu-arrow {
-  color: var(--color-text-light);
+  color: var(--color-text-tertiary);
   font-size: var(--font-lg);
 }
 
@@ -66,7 +67,7 @@
 .about-name {
   font-size: var(--font-xl);
   font-weight: 700;
-  color: var(--color-white);
+  color: var(--color-text-primary);
   margin-bottom: var(--spacing-sm);
 }
 
@@ -78,5 +79,5 @@
 
 .about-desc {
   font-size: var(--font-sm);
-  color: var(--color-text-light);
+  color: var(--color-text-tertiary);
 }
