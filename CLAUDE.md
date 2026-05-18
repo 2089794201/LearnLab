@@ -41,7 +41,7 @@ npx jest -t "test name"     # 运行匹配名称的测试
 - **所有组件 `.json` 必须设 `"styleIsolation": "apply-shared"`**，否则看不到全局样式
 - 弹窗内 `cancel` touch 事件必须用 `catchtap="handler"`（非空），空字符串 `catchtap=""` 不阻止冒泡
 - `utils/db.js` 使用延迟初始化 `wx.cloud.database()`（每个函数内调用 `getDb()`），不能模块级缓存——避免 `wx.cloud.init()` 未完成就创建数据库连接
-- `project.config.json` 和 `miniprogram/app.js` 已设 `git update-index --skip-worktree`，本地真实 AppID/环境 ID 不会被提交
+- 敏感信息保护：`project.config.json` 使用 `<YOUR-APPID>` 占位符，真实 AppID/云环境 ID 存在 `project.private.config.json`（已在 `.gitignore` 中）。`miniprogram/app.js` 通过 `require('./config')` 读取云环境 ID，`config.js` 已在 `.gitignore` 中，`config.example.js` 为模板。首次 clone 后运行 `LEARNLAB_CLOUD_ENV=cloud1-xxx node scripts/generate-config.js` 生成配置文件
 
 ## 测试要点
 
@@ -52,4 +52,4 @@ npx jest -t "test name"     # 运行匹配名称的测试
 
 ## 占位符
 
-代码中 `<YOUR-APPID>` 和 `<YOUR-ENV-ID>` 为 GitHub 占位符。本地开发时需替换为真实值（当前已替换但被 skip-worktree 保护）。
+代码中 `<YOUR-APPID>` 为 GitHub 占位符。本地开发时在 `project.private.config.json` 中填入真实 AppID，通过 `LEARNLAB_CLOUD_ENV` 环境变量或直接编辑 `miniprogram/config.js` 设置云环境 ID。

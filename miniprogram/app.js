@@ -1,12 +1,17 @@
+const config = require('./config');
+
 App({
   onLaunch() {
     wx.cloud.init({
-      env: '<YOUR-ENV-ID>',
+      env: config.cloudEnv,
       traceUser: true
     });
+    const theme = wx.getStorageSync('learnlab_theme') || 'dark';
+    this.globalData.theme = theme;
   },
   globalData: {
     loggedIn: false,
-    code: null
+    code: null,
+    theme: 'dark'
   }
 });

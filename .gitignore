@@ -2,3 +2,9 @@ node_modules/
 .superpowers/
 *.log
 project.private.config.json
+
+# 敏感配置文件 —— 用环境变量代替硬编码，防止 api 泄露
+miniprogram/config.js
+.env
+.env.local
+.env.*.local
